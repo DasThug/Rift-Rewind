@@ -116,16 +116,7 @@ def get_matches_by_id(riot_id, api_key, params=None):
     Returns:
         list: A list of match IDs.
     """
-
-    params = {
-            "startTime" : None,
-            "endTime" : None,
-            "queue" : None,
-            "type" : None,
-            "start" : None,
-            "count" : None
-        } 
-
+    
     try:
         url = f"https://{RIOT_HEADERS['region']}.api.riotgames.com/lol/match/v5/matches/by-puuid/{riot_id}/ids?"
         if params == None:
@@ -232,4 +223,6 @@ if __name__ == "__main__":
         RIOT_API_KEY = input("Enter your Riot API Key: ")
 
     id = get_riot_by_name("Das Thug","gyat", RIOT_API_KEY)
-    print(get_matches_by_id(id, RIOT_API_KEY, None))
+    matches = get_matches_by_id(id, RIOT_API_KEY, None)
+    print(get_match_timeline(matches[0], RIOT_API_KEY))
+
